@@ -3,6 +3,8 @@ package rlarroque.dao;
 import org.springframework.stereotype.Repository;
 import rlarroque.model.User;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -11,11 +13,32 @@ import java.util.UUID;
 @Repository
 public class UserDao {
 
+  /**
+   * Creates a user.
+   *
+   * @param user the user to create
+   * @return the user id generated
+   */
   public UUID create(User user) {
     return UUID.randomUUID();
   }
 
-  public User get (UUID id) {
-    return new User("Some name");
+  /**
+   * Retrieves a user based on its id.
+   *
+   * @param id the id
+   * @return the user retrieved
+   */
+  public User get(UUID id) {
+    return new User(id, "Some name");
+  }
+
+  /**
+   * Retrieves all users available.
+   *
+   * @return the list of users retrieved
+   */
+  public List<User> getAll() {
+    return Arrays.asList(new User(UUID.randomUUID(), "User 1"), new User(UUID.randomUUID(), "User 2"));
   }
 }
